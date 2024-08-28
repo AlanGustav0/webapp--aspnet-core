@@ -27,6 +27,7 @@ namespace Alura.ListaLeitura.App
             builderRoute.MapRoute("Livros/Lidos", LivrosLidos);
             builderRoute.MapRoute("Cadastro/NovoLivro/{nome}/{autor}", NovoLivroParaLer);
             builderRoute.MapRoute("Livros/Detalhes/{id:int}", ExibeDetalhes);
+            builderRoute.MapRoute("Cadastro/NovoLivro", ExibirFormulario);
 
 
             var routes = builderRoute.Build();
@@ -34,6 +35,19 @@ namespace Alura.ListaLeitura.App
             app.UseRouter(routes);
 
             //app.Run(Roteamento);
+        }
+
+        private Task ExibirFormulario(HttpContext context)
+        {
+            var formulario = @"
+                <html>
+                    <form>
+                        <input/><input/>
+                        <button>Gravar</button>
+                    </form>
+                </html>";
+
+            return context.Response.WriteAsync(formulario);
         }
 
         private Task ExibeDetalhes(HttpContext context)
