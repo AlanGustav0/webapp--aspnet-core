@@ -28,6 +28,7 @@ namespace Alura.ListaLeitura.App
             builderRoute.MapRoute("Cadastro/NovoLivro/{nome}/{autor}", NovoLivroParaLer);
             builderRoute.MapRoute("Livros/Detalhes/{id:int}", ExibeDetalhes);
             builderRoute.MapRoute("Cadastro/NovoLivro", ExibirFormulario);
+            builderRoute.MapRoute("Cadastro/Incluir", ProcessaFormulario);
 
 
             var routes = builderRoute.Build();
@@ -37,12 +38,25 @@ namespace Alura.ListaLeitura.App
             //app.Run(Roteamento);
         }
 
+        private Task ProcessaFormulario(HttpContext context)
+        {
+            var livro = new Livro()
+            {
+                Titulo = context.Request.Query["titulo"].First(),
+                Autor = context.Request.Query["autor"].First()
+            };
+            var repository = new LivroRepositorioCSV();
+            repository.Incluir(livro);
+            return context.Response.WriteAsync("Livro adicionado com sucesso");
+        }
+
         private Task ExibirFormulario(HttpContext context)
         {
             var formulario = @"
                 <html>
-                    <form>
-                        <input/><input/>
+                    <form action='/Cadastro/Incluir'>
+                        <input name='titulo' />
+                        <input name='autor' />
                         <button>Gravar</button>
                     </form>
                 </html>";
