@@ -115,8 +115,17 @@ namespace Alura.ListaLeitura.App
 
         public Task LivrosParaLer(HttpContext context)
         {
+            var conteudo = CarregarHtml("para-ler");
             var repository = new LivroRepositorioCSV();
-            return context.Response.WriteAsync(repository.ParaLer.ToString());
+
+            foreach(var livro in repository.ParaLer.Livros)
+            {
+                conteudo = conteudo.Replace("#NOVO-ITEM#", $"<li>{livro.Titulo} - {livro.Autor}</li>#NOVO-ITEM#");
+            }
+
+            conteudo = conteudo.Replace("#NOVO-ITEM#", "");
+
+            return context.Response.WriteAsync(conteudo);
  
         }
 
