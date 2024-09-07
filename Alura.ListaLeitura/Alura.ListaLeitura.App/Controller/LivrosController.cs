@@ -1,11 +1,13 @@
 ﻿using Alura.ListaLeitura.App.Html.HtmlUtils;
+using Alura.ListaLeitura.App.Negocio;
 using Alura.ListaLeitura.App.Repositorio;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Alura.ListaLeitura.App.Logica
 {
-    public class LivrosController
+    public class LivrosController : Controller
     {
         public string Detalhes(int id)
         {
@@ -20,24 +22,25 @@ namespace Alura.ListaLeitura.App.Logica
         {
             var repository = new LivroRepositorioCSV();
 
-            var html = new ViewResult { ViewName = "lista" };
+            ViewBag.Livros = repository.ParaLer.Livros;
 
-            return html;
-
-        }
-
-        public string Lendo()
-        {
-            var repository = new LivroRepositorioCSV();
-            return repository.Lendo.ToString();
+            return View("lista");
 
         }
 
-        public string Lidos()
+        public IActionResult Lendo()
         {
             var repository = new LivroRepositorioCSV();
-            return repository.Lidos.ToString();
+            ViewBag.Livros = repository.Lendo.Livros;
+            return View("lista");
 
+        }
+
+        public IActionResult Lidos()
+        {
+            var repository = new LivroRepositorioCSV();
+            ViewBag.Livros = repository.Lidos.Livros;
+            return View("lista");
         }
     }
 }
