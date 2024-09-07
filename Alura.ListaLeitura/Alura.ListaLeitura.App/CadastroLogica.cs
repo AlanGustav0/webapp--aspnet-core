@@ -10,7 +10,7 @@ namespace Alura.ListaLeitura.App
 {
     public class CadastroLogica
     {
-        public static Task ProcessaFormulario(HttpContext context)
+        public static Task Incluir(HttpContext context)
         {
             var livro = new Livro()
             {
@@ -22,14 +22,14 @@ namespace Alura.ListaLeitura.App
             return context.Response.WriteAsync("Livro adicionado com sucesso");
         }
 
-        public static Task ExibirFormulario(HttpContext context)
+        public static Task ExibeFormulario(HttpContext context)
         {
             var formulario = HtmlUtils.CarregarHtml("formulario");
 
             return context.Response.WriteAsync(formulario);
         }
 
-        public static Task NovoLivroParaLer(HttpContext context)
+        public static Task NovoLivro(HttpContext context)
         {
             var livro = new Livro()
             {

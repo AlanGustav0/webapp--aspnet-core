@@ -10,7 +10,7 @@ namespace Alura.ListaLeitura.App
 {
     public class LivrosLogica
     {
-        public static Task ExibeDetalhes(HttpContext context)
+        public static Task Detalhes(HttpContext context)
         {
             var id = Convert.ToInt32(context.GetRouteValue("id"));
             var repository = new LivroRepositorioCSV();
@@ -23,7 +23,7 @@ namespace Alura.ListaLeitura.App
 
         
 
-        public static Task LivrosParaLer(HttpContext context)
+        public static Task ParaLer(HttpContext context)
         {
             var conteudo = HtmlUtils.CarregarHtml("para-ler");
             var repository = new LivroRepositorioCSV();
@@ -41,14 +41,14 @@ namespace Alura.ListaLeitura.App
 
         
 
-        public static Task LivrosLendo(HttpContext context)
+        public static Task Lendo(HttpContext context)
         {
             var repository = new LivroRepositorioCSV();
             return context.Response.WriteAsync(repository.Lendo.ToString());
 
         }
 
-        public static Task LivrosLidos(HttpContext context)
+        public static Task Lidos(HttpContext context)
         {
             var repository = new LivroRepositorioCSV();
             return context.Response.WriteAsync(repository.Lidos.ToString());
