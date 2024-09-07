@@ -1,6 +1,7 @@
 ﻿using Alura.ListaLeitura.App.Html.HtmlUtils;
 using Alura.ListaLeitura.App.Negocio;
 using Alura.ListaLeitura.App.Repositorio;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Alura.ListaLeitura.App.Logica
 {
@@ -14,11 +15,11 @@ namespace Alura.ListaLeitura.App.Logica
             return "Livro adicionado com sucesso";
         }
 
-        public string ExibeFormulario()
+        public IActionResult ExibeFormulario()
         {
-            var formulario = HtmlUtils.CarregarHtml("formulario");
-
-            return formulario;
+            //var formulario = HtmlUtils.CarregarHtml("formulario");
+            var html = new ViewResult { ViewName = "formulario" };
+            return html;
         }
 
     }

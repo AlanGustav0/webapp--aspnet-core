@@ -1,5 +1,6 @@
 ﻿using Alura.ListaLeitura.App.Html.HtmlUtils;
 using Alura.ListaLeitura.App.Repositorio;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace Alura.ListaLeitura.App.Logica
@@ -15,19 +16,13 @@ namespace Alura.ListaLeitura.App.Logica
 
         }
 
-        public string ParaLer()
+        public IActionResult ParaLer()
         {
-            var conteudo = HtmlUtils.CarregarHtml("para-ler");
             var repository = new LivroRepositorioCSV();
 
-            foreach (var livro in repository.ParaLer.Livros)
-            {
-                conteudo = conteudo.Replace("#NOVO-ITEM#", $"<li>{livro.Titulo} - {livro.Autor}</li>#NOVO-ITEM#");
-            }
+            var html = new ViewResult { ViewName = "lista" };
 
-            conteudo = conteudo.Replace("#NOVO-ITEM#", "");
-
-            return conteudo;
+            return html;
 
         }
 
