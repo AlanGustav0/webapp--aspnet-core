@@ -1,8 +1,5 @@
-﻿using Alura.ListaLeitura.App.Html.HtmlUtils;
-using Alura.ListaLeitura.App.Negocio;
-using Alura.ListaLeitura.App.Repositorio;
+﻿using Alura.ListaLeitura.App.Repositorio;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Alura.ListaLeitura.App.Logica

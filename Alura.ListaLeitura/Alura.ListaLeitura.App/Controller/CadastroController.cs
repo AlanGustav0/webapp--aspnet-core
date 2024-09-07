@@ -1,5 +1,4 @@
-﻿using Alura.ListaLeitura.App.Html.HtmlUtils;
-using Alura.ListaLeitura.App.Negocio;
+﻿using Alura.ListaLeitura.App.Negocio;
 using Alura.ListaLeitura.App.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
